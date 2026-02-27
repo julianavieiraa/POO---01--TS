@@ -1,0 +1,1 @@
+Backend desenvolvido em Node.js com Express e TypeScript para o cadastro e gerenciamento de categorias. Utiliza MySQL com pool de conexões. Implementa operações completas de CRUD, permitindo criar, listar e editar registros. Possui tratamento estruturado de erros e organização em camadas.
