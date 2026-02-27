@@ -61,4 +61,10 @@ export class Categoria {
 
         }
     }
+
+    public static validarId(id: number): void {
+        if (isNaN(id) || id <= 0) {
+            throw new Error('Id inválido');
+        }
+    }
 }

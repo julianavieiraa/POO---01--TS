@@ -11,6 +11,13 @@ export class CategoriaRepository {
         );
         return rows;
     }
+    
+    async findById(id: number): Promise<ICategoria[]> {
+        const sql = 'SELECT * FROM categorias WHERE id=?;';
+        const values = [id];
+        const [rows] = await db.execute<ICategoria[]>(sql, values);
+        return rows;
+    }
 
     async create(dados: Omit<ICategoria, 'id'>) {
         const sql = 'INSERT INTO categorias (descricao, ativo) VALUES (?,?);';
@@ -25,4 +32,26 @@ export class CategoriaRepository {
         const [rows] = await db.execute<ResultSetHeader>(sql, values)
         return rows;
     }
+
+    async delete(id: number) {
+        const sql = 'DELETE FROM categorias WHERE id=?;';
+        const values = [id];
+        const [rows] = await db.execute<ResultSetHeader>(sql, values);
+        return rows;
+    }
+    
+    async findByNome(descricao: string) {
+        const sql = 'SELECT * FROM categorias WHERE descricao LIKE ?;';
+        const values = [descricao];
+        const [rows] = await db.execute<ICategoria[]>(sql, values);
+        return rows;
+    }
+    
+
+    async findAllOrdenado() {
+    const sql = 'SELECT * FROM categorias ORDER BY descricao ASC;';
+    const [rows] = await db.execute<ICategoria[]>(sql);
+    return rows;
+}
+
 }
